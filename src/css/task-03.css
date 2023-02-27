@@ -1,0 +1,16 @@
+.gallery{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+li{
+    width: 1260px;
+}
+li:not(:last-child){
+    margin-bottom: 30px;
+}
+
+img{
+    width: 100%;
+}
