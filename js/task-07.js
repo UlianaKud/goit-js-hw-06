@@ -1,6 +1,15 @@
-const rangeEl = document.querySelector('#font-size-control');
-const textEl =  document.querySelector('#text');
+const rangeEl = document.querySelector("#font-size-control");
+const textEl = document.querySelector("#text");
+const startSizeValue = "56";
 
-rangeEl.addEventListener('input', (event) => {
-    textEl.style.fontSize = `${event.currentTarget.value}px`
+rangeEl.value = startSizeValue;
+
+const setFontSize = (elem, size) => {
+  elem.style.fontSize = `${size}px`;
+};
+setFontSize(textEl, startSizeValue);
+
+rangeEl.addEventListener("input", (event) => {
+  const inputValue = event.currentTarget.value;
+  setFontSize(textEl, inputValue);
 });

@@ -8,47 +8,29 @@ const input = document.querySelector("input");
 const create = document.querySelector("[data-create]");
 const destroy = document.querySelector("[data-destroy]");
 
-let inputData;
-input.addEventListener("change", (event) => {
-  inputData = event.currentTarget.value;
-});
-
-let defaultWidth = 30;
-let defaultHeiht = 30;
+const defaultSize = 30;
 const step = 10;
 
-const createBoxes = (amount) => {
+const createBoxes = () => {
+  const amount = input.value;
   const elements = [];
 
   for (let index = 0; index < amount; index++) {
-    const boxEl = document.createElement("div");
-    const width = defaultHeiht + index * step;
-    const height = defaultHeiht + index * step;
-    boxEl.style.backgroundColor = `${getRandomHexColor()}`;
-    boxEl.style.width = `${width}px`;
-    boxEl.style.height = `${height}px`;
+    const color = getRandomHexColor();
+    const width = defaultSize + index * step;
+    const height = defaultSize + index * step;
+    const boxEl = `<div style='width:${width}px;height:${height}px;background-color:${color}'></div>`;
 
     elements.push(boxEl);
-
-    if (index === amount - 1) {
-      defaultWidth = width + step;
-      defaultHeiht = height + step;
-    }
   }
-
-  boxes.append(...elements);
+  boxes.insertAdjacentHTML("beforeend", elements.join(""));
 };
 
-const handleBoxCreate = () => createBoxes(inputData);
-
-create.addEventListener("click", handleBoxCreate);
-
-
 const destroyBoxes = () => {
-  boxes.innerHTML = '';
-  input.value = '';
-  defaultWidth = 30;
-  defaultHeiht = 30;
-}
+  boxes.innerHTML = "";
+  input.value = "";
+};
 
-destroy.addEventListener("click", () => destroyBoxes ());
+create.addEventListener("click", createBoxes);
+
+destroy.addEventListener("click", destroyBoxes);
